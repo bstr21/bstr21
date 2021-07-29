@@ -1,0 +1,50 @@
+<section class="home-content">
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+    <div class="timer"></div>
+</section>
+<section class="water">
+    <div class="content">
+        <h2>Water</h2>
+        <h2>Water</h2>
+    </div>
+</section>
+
+<script>
+    const deg = 6;
+    const hr = document.querySelector('#hr');
+    const mn = document.querySelector('#mn');
+    const sc = document.querySelector('#sc');
+    let timer = document.querySelector(".timer");
+
+    setInterval(() => {
+        let day = new Date();
+        let hh = day.getHours() * 30;
+        let mm = day.getMinutes() * deg;
+        let ss = day.getSeconds() * deg;
+
+        hr.style.transform = `rotateZ(${(hh)+(mm/12)}deg)`;
+        mn.style.transform = `rotateZ(${mm}deg)`;
+        sc.style.transform = `rotateZ(${ss}deg)`;
+        timer.innerHTML = `${getFormatTime(day)}`;
+    })
+    function getFormatTime(dt){
+        var h = dt.getHours();
+        var m = dt.getMinutes();
+        var s = dt.getSeconds();
+        if (h < 10) h = '0' + h;
+        if (m < 10) m = '0' + m;
+        if (s < 10) s = '0' + s;
+        var hms = h + ':' + m + ':' + s;
+        return hms;
+    }
+</script>
